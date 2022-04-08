@@ -1,6 +1,7 @@
 import json
 import codecs
 import re
+from hazm import Normalizer, word_tokenize, sent_tokenize, Lemmatizer, POSTagger
 
 
 class VehicleDetector:
@@ -30,14 +31,21 @@ class VehicleDetector:
         return f"{self._get_pattern_from_list(stop_words)} {self._get_pattern_from_list(names)}"
 
     def run(self, text: str) -> dict:
-        # TODO: implement normalize and tokenize and separate sentences
-        sentences = [text, ]
+        sentences = self._pre_process(text)
         data = []
         for sentence in sentences:
             vehicle = self.match_vehicle(sentence)
             if vehicle:
                 data.append((self.match_source(sentence), self.match_destination(sentence), vehicle))
         return self._represent_data(data)
+
+    def _pre_process(self, text):
+        normalized_text = Normalizer().normalize(text)
+        sentences = sent_tokenize(normalized_text)
+        lemmatizer = Lemmatizer()
+        tagger = POSTagger(model='resources/postagger.model')
+        sentences_token = [[lemmatizer.lemmatize(word) for word in word_tokenize(sentence)] for sentence in sentences]
+        return sentences
 
     def _represent_data(self, data):
         represented_data = []
