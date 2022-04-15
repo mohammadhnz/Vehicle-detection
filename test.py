@@ -60,7 +60,7 @@ class TestVehicleDetector(unittest.TestCase):
         )
     def test_vehicle_detector_detects_correctly_with_sentence_5(self):
         self._test_vehicle_detector_detects_correctly(
-            text="در حال رانندگͳ با خودروی تیبا هستم.",
+            text="در حال رانندگی با خودروی تیبا هستم.",
             expected=[
                 {
                     "from": "",
@@ -68,7 +68,7 @@ class TestVehicleDetector(unittest.TestCase):
                     "to": "",
                     "to_span": [-1, -1],
                     "vehicle": "تیبا",
-                    "vehicle_span": [18, 23]
+                    "vehicle_span": [25, 29]
                 }
             ]
         )
