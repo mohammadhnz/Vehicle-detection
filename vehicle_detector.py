@@ -1,9 +1,9 @@
-import json
 import codecs
+import json
 import re
-from typing import List, Tuple
+from typing import List, Tuple, Dict
 
-from hazm import Normalizer, word_tokenize, sent_tokenize, Lemmatizer, POSTagger
+from hazm import Normalizer, sent_tokenize
 
 
 class VehicleDetector:
@@ -41,7 +41,7 @@ class VehicleDetector:
                    f" {self._get_pattern_from_list(names)}"
         return f"{self._get_pattern_from_list(stop_words)} {self._get_pattern_from_list(names)}"
 
-    def run(self, text: str) -> dict:
+    def run(self, text: str) -> Dict[any, any]:
         sentences = self._pre_process(text)
         data = []
         for sentence in sentences:

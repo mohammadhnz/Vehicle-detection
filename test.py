@@ -10,7 +10,7 @@ class TestVehicleDetector(unittest.TestCase):
 
     def test_vehicle_detector_detects_correctly_with_simple_sentence_1(self):
         self._test_vehicle_detector_detects_correctly(
-            text="من با قطار از تهران به اصفهان مͳ روم",
+            text="من با قطار از تهران به اصفهان می روم.",
             expected=[
                 {
                     "from": "تهران",
@@ -40,13 +40,13 @@ class TestVehicleDetector(unittest.TestCase):
 
     def test_vehicle_detector_detects_correctly_with_sentence_3(self):
         self._test_vehicle_detector_detects_correctly(
-            text="از تهران با ماشین های پردودش خوشم نیامده و به شهرهای حومه آن بیشتر علاقه دارم",
+            text="از تهران با ماشین های پردودش خوشم نیامده و به شهرهای حومه آن بیشتر علاقه دارم.",
             expected=[]
         )
 
     def test_vehicle_detector_detects_correctly_with_sentence_4(self):
         self._test_vehicle_detector_detects_correctly(
-            text="● من و خواهرم تیبا معمولا با هواپیما مسافرت مͳ کنیم.",
+            text="من و خواهرم تیبا معمولا با هواپیما مسافرت می کنیم.",
             expected=[
                 {
                     "from": "",
@@ -54,7 +54,7 @@ class TestVehicleDetector(unittest.TestCase):
                     "to": "",
                     "to_span": [-1, -1],
                     "vehicle": "هواپیما",
-                    "vehicle_span": [29, 36]
+                    "vehicle_span": [27, 34]
                 }
             ]
         )
